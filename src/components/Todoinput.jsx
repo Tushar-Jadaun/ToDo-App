@@ -7,13 +7,13 @@ export default function Todoinput({addTodo}) {
     setTodo("");
   }
   return (
-    <div>
+    <div className='flex gap-2 mb-4'>
          <input 
          placeholder='Enter the input'
          value={todo}
          onChange={(e)=>setTodo(e.target.value)}
          className='p-2 border rounded flex-1'/>
-         <button className='text-red-50 bg-white rounded-2xl px-4' onClick={addingTodo}>Add</button>
+         <button className='text-red-500 bg-white rounded-2xl px-4 cursor-pointer' onClick={addingTodo}>Add</button>
     </div>
   )
 }
