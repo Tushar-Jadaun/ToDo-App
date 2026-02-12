@@ -18,7 +18,7 @@ export default function App() {
 
   const addTodo = (text) => {
     if (!text.trim()) return;
-    setTodos([...todos, { text, completed: false }]);
+    setTodos([...todos, { text, completed: false,isEdited:false }]);
   };
 
   const deleteTodo = (index) => {
@@ -31,6 +31,27 @@ export default function App() {
         i === index ? { ...todo, completed: !todo.completed } : todo
       )
     );
+
+  };
+
+   // ✅ Edit button clicked
+  const editTodo = (index) => {
+    setTodos(
+      todos.map((todo, i) =>
+        i === index ? { ...todo, isEdited: true } : todo
+      )
+    );
+  };
+
+  
+  const saveTodo = (index, newText) => {
+    setTodos(
+      todos.map((todo, i) =>
+        i === index
+          ? { ...todo, text: newText, isEdited: false }
+          : todo
+      )
+    );
   };
 
   return (
@@ -39,6 +60,9 @@ export default function App() {
         <h1 className='text-center rounded-2xl border p-2'>ToDo App 📝</h1>
         <Todoinput addTodo={addTodo} />
         <Todolist
+          // index={index}
+          editTodo={editTodo}
+          saveTodo={saveTodo}
           todos={todos}
           deleteTodo={deleteTodo}
           toggleTodo={toggleTodo}
